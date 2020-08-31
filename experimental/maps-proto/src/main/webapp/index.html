@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={your_maps_API_key}&callback=initMap"
+            defer
+        >
+        </script>
+    </head>
+    <body>
+
+        <p>From</p>
+        <input name="from" />
+        <br />
+        <p>To</p>
+        <input name="to" />
+        <br />
+        <button id="go" onclick="handleGoClick()">Go!</button>
+
+        <div id="map" style="width: 500px; height: 500px"></div>
+        <script src="index.js">
+        </script>
+    </body>
+</html>
