@@ -32,8 +32,7 @@ async function convertToCoordinates(name) {
         return false;
     }
 
-    const coords = json.results[0].geometry.location;
-    return coords;
+    return json.results[0].geometry.location;
 };
 
 function coordsToString(coords) {
