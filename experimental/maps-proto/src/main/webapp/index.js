@@ -27,6 +27,8 @@ async function convertToCoordinates(name) {
     const json = await res.json();
 
     if(json.status !== "OK") {
+        console.log('Could not convert your locaiton to coordinates!');
+
         return false;
     }
 
@@ -45,7 +47,7 @@ const travelModes = {
     walking: 'WALKING'
 };
 
-function printDirectionsOnMap(map, from, to, travelMode) {
+function drawDirectionsOnMap(map, from, to, travelMode) {
     const directionsService = new google.maps.DirectionsService(),
         directionsRenderer = new google.maps.DirectionsRenderer({
             suppressMarkers: true
@@ -60,6 +62,8 @@ function printDirectionsOnMap(map, from, to, travelMode) {
     }, (result, status) => {
         if(status == 'OK') {
             directionsRenderer.setDirections(result);
+        } else {
+            alert('There was an error calculating your route!');
         }
     });
 }
@@ -83,6 +87,6 @@ const handleGoClick = () => {
     } else if(!addMarkerFromPlaceName(map, toName)) {
         alert('Please check your destination name!')
     } else {
-        printDirectionsOnMap(map, fromName, toName, travelModes.transit);
+        drawDirectionsOnMap(map, fromName, toName, travelModes.transit);
     }
 }
