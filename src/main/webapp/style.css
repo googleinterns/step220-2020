@@ -10,3 +10,17 @@ div {
     display: flex;
     justify-content: center;
 }
+
+img {
+    max-width:10vh;
+    max-height:10vh;
+    margin: 0 0 0 0;
+}
+
+button {
+    align-content: center;
+    margin: 0 0 0 0;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 100%;
+}
