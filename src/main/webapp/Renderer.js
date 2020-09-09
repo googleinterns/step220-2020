@@ -1,6 +1,6 @@
-/*
-** Class for adding the events stored in the calendar to the html page
-*/
+/**
+ * Class for adding the events stored in the calendar to the html page
+ */
 export default class Renderer {
     constructor(eventList) {
         this.eventList = eventList;        
@@ -9,12 +9,12 @@ export default class Renderer {
     render(events) {
         this.eventList.innerHTML = "";
 
-        for (var index in events.list) {
+        for (let index of events) {
             this.eventList.innerHTML += `
                 <div class="event">
-                    <p>${events.list[index].name}</p>
-                    <p>${events.list[index].location}</p>
-                    <p>${events.list[index].time}</p>
+                    <p>${index.name}</p>
+                    <p>${index.location}</p>
+                    <p>${index.time}</p>
                 </div>
             `
         }
