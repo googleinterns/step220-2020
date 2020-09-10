@@ -28,6 +28,10 @@
 
 .popup-window {
     text-align: center;
+    /* The popup window will be visible only when
+     * specific actions are made by the user
+     */
+    display: none;
 }
 
 /* STEP 2/3 */

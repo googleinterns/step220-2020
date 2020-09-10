@@ -4,6 +4,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="startup.js"></script>
+    <script src="popup.js"></script>
   </head>
     <h1 class="name">Events</h1> 
 
@@ -11,10 +12,10 @@
     </div>
 
     <div id="add-button">
-        <button class="create-event">+</button>
+        <button class="create-event" onclick="openEventPopup()">+</button>
     </div>
 
-    <div class="popup-window">
+    <div class="popup-window" id="add-event">
         <form>
             <p>Add Event</p>
 
@@ -28,6 +29,8 @@
             <input type="text" placeholder="Enter event starting time" required>
             <label>Ending Time:</label>
             <input type="text" placeholder="Enter event ending time" required>
+
+            <button class="action" onclick="closeEventPopup()">Cancel</button>
         </form>
     </div>
   </body>
