@@ -62,12 +62,12 @@ class MapInterface {
             const json = await response.json();
 
             if(json.status === 'OK') {
-                return json.results[0].geometry.location;
+                return { status: 'OK', coordinates: json.results[0].geometry.location };
             } else {
-                throw 'Error with the API';
+                return { status: json.status, coordinates: {} };
             }
         } catch(e) {
-            return {};
+            return { status: 'UNKNOWN_ERROR', coordinates: {} };
         }
     }
 
