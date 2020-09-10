@@ -21,7 +21,6 @@ class MapInterface {
         this.directionsRenderer.setMap(this.map);
 
         this.markers = [];
-        static const API_KEY = ''; // your API key
     }
 
     /**
@@ -55,7 +54,8 @@ class MapInterface {
      * @returns converts into and return the coordinates object, empty object if location not found
      */
     async converToCoordinates(text, fetch = windows.fetch) {
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${this.API_KEY}&address=${text}`; // Maps JS API can also be used
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY}&address=${text}`; // Maps JS API can also be used
+        // you can add your API key at the CONSTANTS.js file
 
         try {
             const response = await fetch(url);
