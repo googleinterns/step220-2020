@@ -57,10 +57,18 @@ class MapInterface {
     async converToCoordinates(text, fetch = windows.fetch) {
         const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${this.API_KEY}&address=${text}`; // Maps JS API can also be used
 
-        const response = await fetch(url);
-        const json = await response.json();
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
 
-        return (json.status === 'OK' ? json.results[0].geometry.location : {}); // TODO
+            if(json.status === 'OK') {
+                return json.results[0].geometry.location;
+            } else {
+                throw 'Error with the API';
+            }
+        } catch(e) {
+            return {};
+        }
     }
 
     /**
