@@ -25,7 +25,6 @@ const events = [{
  */
 function startup() {
     let container = document.getElementsByClassName('main-interface')[0];
-
     const renderer = new Step3Renderer(container);
 
     renderer.render(events);
