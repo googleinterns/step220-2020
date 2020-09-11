@@ -67,6 +67,8 @@ class MapInterface {
                 return { status: json.status, coordinates: {} };
             }
         } catch(e) {
+            console.log("An unexpected error has occured while making an API request to convert to coordinates:", e);
+
             return { status: 'UNKNOWN_ERROR', coordinates: {} };
         }
     }
