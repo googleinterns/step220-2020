@@ -1,6 +1,6 @@
 import Step3Renderer from './renderers/Step3Renderer.js';
 
-// TODO: replace this array with the event management class, as discussed with Remus
+// TODO(tzavidas): replace this array with the event management class, as discussed with remusn
 const events = [{
         name: 'Breakfast',
         location: 'Zurich',

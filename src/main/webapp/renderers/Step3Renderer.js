@@ -6,7 +6,7 @@ export default class Step3Renderer extends RendererInterface {
     }
 
     generateLink(from, to) {
-        return '#'; // TODO: create the actual link (@tzavidas)
+        return '#'; // TODO(tzavidas): create the actual link
     }
 
     render(events) {
