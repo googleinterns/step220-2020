@@ -1,3 +1,5 @@
+// TODO(remusn@) Create a class that can manage multiple popup objects
+
 /**
  * Opens a popup window for adding an event when the add-button is pressed
  */
