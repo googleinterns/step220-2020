@@ -24,14 +24,12 @@ const events = [{
  * Add the events from local storage
  */
 function startup() {
-    console.log("YES");
     let container = document.getElementsByClassName('main-interface')[0];
 
     const renderer = new Step3Renderer(container);
 
     renderer.render(events);
 }
-console.log("YES 2");
 
 /**
  * Startup() function is used every time the window refreshes
