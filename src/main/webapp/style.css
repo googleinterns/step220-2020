@@ -100,3 +100,14 @@
     margin: 30px auto;
     padding-top: 100%;
 }
+
+.next-button {
+    text-decoration: none;
+    border-style: solid;
+    border-color: black;
+}
+
+.next-page {
+    text-align: center;
+    margin-top: 20px;
+}
