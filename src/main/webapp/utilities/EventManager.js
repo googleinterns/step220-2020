@@ -1,23 +1,13 @@
-export class EventManager {
+class EventManager {
     /**
      * Constructor for normal usage
      * @constructor
+     * @param localStorageObject (optional) mock object for testing
      */
-    constructor() {
-        this.localStorage = Window.localStorage;
-
-        setup();
-    }
-
-    /**
-     * Constructor that enables injecting a mock object (for testing)
-     * @constructor
-     * @param {*} LocalStorageObject the mock object
-     */
-    constructor(LocalStorageObject) {
+    constructor(localStorageObject = window.localStorage) {
         this.localStorage = localStorageObject;
 
-        setup();
+        this.setup();
     }
 
     /**
@@ -82,7 +72,7 @@ export class EventManager {
      * @returns {void}
      */
     updateEvent(index, updated) {
-        if(index >= this.eventList.length || !this.eventsList[index]) {
+        if(index >= this.eventsList.length || !this.eventsList[index]) {
             throw Error('Malformed or out of bounds index!');
         } else {
             let eventToModify = this.eventsList[index]
@@ -99,7 +89,7 @@ export class EventManager {
      * @returns {void}
      */
     deleteEvent(index) {
-        if(index >= this.eventList.length || !this.eventsList[index]) {
+        if(index >= this.eventsList.length || !this.eventsList[index]) {
             throw Error('Malformed or out of bounds index!');
         } else {
             this.eventsList.splice(index, 1);
@@ -115,4 +105,4 @@ export class EventManager {
         this.eventsList = [];
         this.setValueInLocalStorage(this.eventsList);
     }
-};
+}
