@@ -50,7 +50,7 @@ export class EventManager {
     setup() {
         this.eventsList = this.getValueInLocalStorageParsed();
 
-        if(events === null) { // no events object exists - first time users
+        if(this.eventsList === null) { // no events object exists - first time users
             this.eventsList = [];
             this.setValueInLocalStorage(this.eventsList);
         }
