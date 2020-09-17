@@ -22,15 +22,15 @@ function closeEventPopup() {
 function createNewEvent() {
     const title = document.getElementById('title').value;
     const location = document.getElementById('location').value;
-    const startingTime = document.getElementById('starting-time').value;
-    const endingTime = document.getElementById('ending-time').value;
+    const startTime = document.getElementById('start-time').value;
+    const endTime = document.getElementById('end-time').value;
 
     // Proceed only if all the fields are completed
-    if (!title || !location || !startingTime || !endingTime) {
+    if (!title || !location || !startTime || !endTime) {
         return;
     }
 
-    const event = new Event(title, location, startingTime, endingTime);
+    const event = new Event(title, location, startTime, endTime);
     addEvent(event);
 }
 
