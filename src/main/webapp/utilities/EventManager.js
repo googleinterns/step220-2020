@@ -38,11 +38,8 @@ class EventManager {
      * @returns {void}
      */
     setup() {
-        this.eventsList = this.getValueInLocalStorageParsed();
-
-        if(this.eventsList === null) { // no events object exists - first time users
-            this.eventsList = [];
-            this.setValueInLocalStorage(this.eventsList);
+        if(this.getValueInLocalStorageParsed() === null) { // no events object exists - first time users
+            this.setValueInLocalStorage([]);
         }
     }
 
@@ -60,9 +57,10 @@ class EventManager {
      * @returns {void}
      */
     addEvent(event) {
-        this.eventsList.push(event);
+        const eventsList = this.getValueInLocalStorageParsed();
+        eventsList.push(event);
 
-        this.setValueInLocalStorage(this.eventsList);
+        this.setValueInLocalStorage(eventsList);
     }
 
     /**
@@ -72,14 +70,16 @@ class EventManager {
      * @returns {void}
      */
     updateEvent(index, updated) {
-        if(index >= this.eventsList.length || !this.eventsList[index]) {
+        const eventsList = this.getValueInLocalStorageParsed();
+
+        if(!eventsList[index] || index >= eventsList.length) {
             throw Error('Malformed or out of bounds index!');
         } else {
-            let eventToModify = this.eventsList[index]
+            let eventToModify = eventsList[index];
             eventToModify = Object.assign({}, eventToModify, updated); // update the keys present on the updated object
 
-            this.eventsList[index] = eventToModify;
-            this.setValueInLocalStorage(this.eventsList);
+            eventsList[index] = eventToModify;
+            this.setValueInLocalStorage(eventsList);
         }
     }
 
@@ -89,11 +89,13 @@ class EventManager {
      * @returns {void}
      */
     deleteEvent(index) {
-        if(index >= this.eventsList.length || !this.eventsList[index]) {
+        const eventsList = this.getValueInLocalStorageParsed();
+
+        if(!eventsList[index] || index >= eventsList.length) {
             throw Error('Malformed or out of bounds index!');
         } else {
-            this.eventsList.splice(index, 1);
-            this.setValueInLocalStorage(this.eventsList);
+            eventsList.splice(index, 1);
+            this.setValueInLocalStorage(eventsList);
         }
     }
     
@@ -102,7 +104,6 @@ class EventManager {
      * @returns {void}
      */
     deleteAllEvents() {
-        this.eventsList = [];
-        this.setValueInLocalStorage(this.eventsList);
+        this.setValueInLocalStorage([]);
     }
 }
