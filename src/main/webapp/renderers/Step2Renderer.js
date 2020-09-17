@@ -6,26 +6,24 @@ export default class Step2Renderer extends RendererInterface {
     }
 
     generateInfoPane(prevEvent, nextEvent, index) {
-        if(prevEvent.location == nextEvent.location) {
-            return `
-                <div class="info-pane">
-                    <p class="same-location-msg">Same location</p>
-                </div>
-            `;
-        } else {
-            return `
-                <div class="info-pane">
-                    <input type="radio" name="options-${index}" id="walk-option" value="car" />
-                    <label for="walk-option">Walk</label>
-                    <input type="radio" name="options-${index}" id="public-transportation-option" value="public-transportation" />
-                    <label for="public-transportation-option">Public Transportation</label>
-                    <input type="radio" name="options-${index}" id="car-option" value="car" />
-                    <label for="car-option">Car</label>
-                    <input type="radio" name="options-${index}" id="bike-option" value="car" />
-                    <label for="bike-option">Bike</label>
-                </div>
-            `;
-        }
+        const sameLocationHtml = `
+            <div class="info-pane">
+                <p class="same-location-msg">Same location</p>
+            </div>
+        `;
+
+        return (prevEvent.location == nextEvent.location ? sameLocationHtml : `
+            <div class="info-pane">
+                <input type="radio" name="options-${index}" id="walk-option" value="car" />
+                <label for="walk-option">Walk</label>
+                <input type="radio" name="options-${index}" id="public-transportation-option" value="public-transportation" />
+                <label for="public-transportation-option">Public Transportation</label>
+                <input type="radio" name="options-${index}" id="car-option" value="car" />
+                <label for="car-option">Car</label>
+                <input type="radio" name="options-${index}" id="bike-option" value="car" />
+                <label for="bike-option">Bike</label>
+            </div>
+        `);
     }
 
     render(events) {
