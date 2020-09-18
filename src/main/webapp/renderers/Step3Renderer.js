@@ -13,7 +13,7 @@ export default class Step3Renderer extends RendererInterface {
         const hours = date.getHours(),
             minutes = date.getMinutes();
 
-        return `${hours % 12}:${minutes.toString(10).padStart(2, '0')} ${(date.getHours() < 12) ? 'AM' : 'PM'}`;
+        return `${(hours === 12 ? 12 : hours % 12)}:${minutes.toString(10).padStart(2, '0')} ${(date.getHours() < 12) ? 'AM' : 'PM'}`;
     }
 
     render(events) {
