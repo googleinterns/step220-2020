@@ -4,14 +4,40 @@
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="startup.js"></script>
+    <script type="module" src="popup.js"></script>
   </head>
+  <body>
     <h1 class="name">Events</h1> 
 
     <div class="list">
     </div>
 
-    <div class="add">
-        <button>+</button>
+    <div id="add-button">
+        <button class="create-event" onclick="window.openEventPopup()">+</button>
+    </div>
+
+    <div class="popup-window" id="add-event">
+        <form>
+            <p>Add Event</p>
+
+            <label>Title:</label>
+            <input type="text" id="title" placeholder="Enter event title" required>
+
+            <label>Location:</label>
+            <input type="text" id="location" placeholder="Enter event location" required>
+
+            <label>Start Time:</label>
+            <input type="text" id="start-time" placeholder="Enter event start time" required>
+            <label>End Time:</label>
+            <input type="text" id="end-time" placeholder="Enter event end time" required>
+
+            <button class="action" onclick="window.createNewEvent()">Submit</button>
+            <button class="action" onclick="window.closeEventPopup()">Cancel</button>
+        </form>
+    </div>
+
+    <div class="next-page">
+        <a class="next-button" href="step2.html"><b>Next</b></a>
     </div>
   </body>
 </html>
