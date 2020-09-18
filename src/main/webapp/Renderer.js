@@ -12,7 +12,7 @@ export default class Renderer {
         for (let index of events) {
             this.eventList.innerHTML += `
                 <div class="event">
-                    <p>${index.name}</p>
+                    <p>${index.title}</p>
                     <p>${index.location}</p>
                     <p>${index.startTime}</p>
                     <p>${index.endTime}</p>

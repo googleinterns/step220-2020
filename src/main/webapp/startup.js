@@ -1,22 +1,23 @@
 import Renderer from './Renderer.js';
-import addEventToLocalStorage from './popup.js'
+import addEventToLocalStorage from './popup.js';
+import EventManager from './utilities/EventManager.js';
 
 // Events array for testing
 const events = [
     {
-        "name": "Breakfast",
+        "title": "Breakfast",
         "location": "Zurich",
         "startTime": "9:30AM",
         "endTime": "10:30AM"
     },
     {
-        "name": "Lunch",
+        "title": "Lunch",
         "location": "Stuttgart",
         "startTime": "1:30PM",
         "endTime": "2:30PM"
     },
     {
-        "name": "Dinner",
+        "title": "Dinner",
         "location": "Bucharest",
         "startTime": "7:30PM",
         "endTime": "8:30PM"
@@ -28,10 +29,14 @@ const events = [
  * Add the events from local storage
  */
 function startup() {
-    let container = document.getElementsByClassName('list')[0];
-    var eventRenderer = new Renderer(container);
+    const eventManager = new EventManager();
+    for (let event of events) {
+        eventManager.addEvent(event)
+    }
     
-    eventRenderer.render(events)
+    let container = document.getElementsByClassName('list')[0];
+    const eventRenderer = new Renderer(container);
+    eventRenderer.render(eventManager.getEvents());
 }
 
 /**

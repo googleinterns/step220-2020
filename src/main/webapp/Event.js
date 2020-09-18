@@ -2,10 +2,10 @@
  * Events format class
  */
 export default class Event {
-    constructor(title, location, startingTime, endingTime) {
+    constructor(title, location, startTime, endTime) {
         this.title = title;        
         this.location = location;        
-        this.startingTime = startingTime;        
-        this.endingTime = endingTime;        
+        this.startTime = startTime;        
+        this.endTime = endTime;        
     }
 }
