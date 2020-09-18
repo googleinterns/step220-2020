@@ -1,21 +1,28 @@
 import Renderer from './Renderer.js';
+import addEventToLocalStorage from './popup.js';
+import EventManager from './utilities/EventManager.js';
+
+// TODO (remusn@) change time format so that it matches Google Maps time format
 
 // Events array for testing
 const events = [
     {
-        "name": "Breakfast",
+        "title": "Breakfast",
         "location": "Zurich",
-        "time": "9:30AM - 10:30AM"
+        "startTime": "9:30AM",
+        "endTime": "10:30AM"
     },
     {
-        "name": "Lunch",
+        "title": "Lunch",
         "location": "Stuttgart",
-        "time": "1:30PM - 2:30PM"
+        "startTime": "1:30PM",
+        "endTime": "2:30PM"
     },
     {
-        "name": "Dinner",
+        "title": "Dinner",
         "location": "Bucharest",
-        "time": "7:30PM - 8:30PM"
+        "startTime": "7:30PM",
+        "endTime": "8:30PM"
     }
 ]
 
@@ -24,9 +31,14 @@ const events = [
  * Add the events from local storage
  */
 function startup() {
+    const eventManager = new EventManager();
+    for (let event of events) {
+        eventManager.addEvent(event)
+    }
+    
     let container = document.getElementsByClassName('list')[0];
-    var eventRenderer = new Renderer(container);
-    eventRenderer.render(events)
+    const eventRenderer = new Renderer(container);
+    eventRenderer.render(eventManager.getEvents());
 }
 
 /**
