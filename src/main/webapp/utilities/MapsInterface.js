@@ -3,7 +3,7 @@ class MapInterface {
     /**
      * @param element the DOM element the map to be rendered
      * @param centerCoordinates coordinates object that will be the center of the map
-     * @param options (optional) additional parameters that might be needed
+     * @param {zoom: number, directionsService: type, directionsRenderer: type} options (optional) additional parameters that might be needed
      * @param zoom (on options) initial zoom of the map
      * @param directionsService (on options) mock object for directionsService, can be used for testing
      * @param directionsRenderer (on options) mock object for directionsRenderer, can be used for testing
