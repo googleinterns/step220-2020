@@ -26,19 +26,30 @@ const events = [
     }
 ]
 
+// TODO (remusn@) Link Google Calendar with the function
+
 /**
- * Empties the event list
- * Add the events from local storage
+ * Imports events from Google Calendar
  */
-function startup() {
+function importEvents() {
     const eventManager = new EventManager();
     for (let event of events) {
         eventManager.addEvent(event)
     }
-    
+
     let container = document.getElementsByClassName('list')[0];
     const eventRenderer = new Renderer(container);
     eventRenderer.render(eventManager.getEvents());
+}
+
+window.import = importEvents;
+
+/**
+ * Empties the event list
+ */
+function startup() {
+    const eventManager = new EventManager();
+    eventManager.deleteAllEvents();
 }
 
 /**
