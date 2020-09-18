@@ -1,23 +1,30 @@
+// TODO(tzavidas): seperate the interface from the logic, by using an implementation for easier testing (like the bridge pattern)
 class MapInterface {
     /**
      * @param element the DOM element the map to be rendered
      * @param centerCoordinates coordinates object that will be the center of the map
      * @param options (optional) additional parameters that might be needed
+     * @param zoom (on options) initial zoom of the map
+     * @param directionsService (on options) mock object for directionsService, can be used for testing
+     * @param directionsRenderer (on options) mock object for directionsRenderer, can be used for testing
      */
-    constructor(element, centerCoordinates, options = {}) {
+    constructor(element, centerCoordinates, options = {
+        zoom: 8,
+        directionsService: new google.maps.DirectionsService(),
+        directionsRenderer: new google.maps.DirectionsRenderer({
+            suppressMarkers: true, // do not display default markers of the route
+        }),
+    }) {
         this.map = new google.maps.Map(element, {
             center: centerCoordinates,
-            zoom: options.zoom || 8,
+            zoom: options.zoom,
         });
 
         // Service that fetches the route (used on drawRoute)
-        this.directionsService = options.directionsService || new google.maps.DirectionsService();
+        this.directionsService = options.directionsService;
 
-        // Service that draws a route on the map (used on drawRoute)
-        this.directionsRenderer = options.directionsRenderer || new google.maps.DirectionsRenderer({
-                suppressMarkers: true, // do not display default markers of the route
-            });
-
+        // Service that draws a route on the map (used by drawRoute method)
+        this.directionsRenderer = options.directionsRenderer;
         this.directionsRenderer.setMap(this.map);
 
         this.markers = [];
@@ -25,7 +32,7 @@ class MapInterface {
 
     /**
      * @param coordinates coordinates object of the marker's position
-     * @param markerObject substitude object for marker (for testing)
+     * @param markerObject mock object for the marker, can be used for testing
      */
     addMarker(coordinates, markerObject) {
         const marker = markerObject || new google.maps.Marker({
@@ -81,24 +88,17 @@ class MapInterface {
      * @param options (optional) additional options that might be needed (like adding a starting or arrival time for the route)
      */
     drawRoute(originCoordinates, destinationCoordinates, travelMode, options = {}) {
-        const directionsService = new google.maps.DirectionsService(),
-            directionsRenderer = new google.maps.DirectionsRenderer({
-                suppressMarkers: true, // do not display default markers of the route
-            });
-
-        directionsRenderer.setMap(this.map);
-
-        directionsService.route({
+        this.directionsService.route({
             origin: originCoordinates,
             destination: destinationCoordinates,
             travelMode,
             ...options
         }, (result, status) => {
             if(status == 'OK') {
-                directionsRenderer.setDirections(result);
+                this.directionsRenderer.setDirections(result);
             } else {
                 alert('An error has occured while calculating a route');
-                // TODO: as soon as test it, replace this with an actual action (like reloading the page)
+                // TODO(tzavidas): as soon as test it, replace this with an actual action (like reloading the page)
             }
         })
     }
