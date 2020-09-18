@@ -14,7 +14,8 @@ export default class Renderer {
                 <div class="event">
                     <p>${index.name}</p>
                     <p>${index.location}</p>
-                    <p>${index.time}</p>
+                    <p>${index.startTime}</p>
+                    <p>${index.endTime}</p>
                 </div>
             `
         }

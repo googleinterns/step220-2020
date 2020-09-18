@@ -1,21 +1,25 @@
 import Renderer from './Renderer.js';
+import addEventToLocalStorage from './popup.js'
 
 // Events array for testing
 const events = [
     {
         "name": "Breakfast",
         "location": "Zurich",
-        "time": "9:30AM - 10:30AM"
+        "startTime": "9:30AM",
+        "endTime": "10:30AM"
     },
     {
         "name": "Lunch",
         "location": "Stuttgart",
-        "time": "1:30PM - 2:30PM"
+        "startTime": "1:30PM",
+        "endTime": "2:30PM"
     },
     {
         "name": "Dinner",
         "location": "Bucharest",
-        "time": "7:30PM - 8:30PM"
+        "startTime": "7:30PM",
+        "endTime": "8:30PM"
     }
 ]
 
@@ -26,6 +30,7 @@ const events = [
 function startup() {
     let container = document.getElementsByClassName('list')[0];
     var eventRenderer = new Renderer(container);
+    
     eventRenderer.render(events)
 }
 

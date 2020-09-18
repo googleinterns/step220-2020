@@ -1,4 +1,5 @@
 import Event from './Event.js';
+import EventManager from './utilities/EventManager.js';
 
 // TODO(remusn@) Create a class that can manage multiple popup objects
 
@@ -31,7 +32,7 @@ function createNewEvent() {
     }
 
     const event = new Event(title, location, startTime, endTime);
-    addEvent(event);
+    addEventToLocalStorage(JSON.stringify(event));
 }
 
 // Export functions to global object "window"
@@ -40,6 +41,10 @@ window.closeEventPopup = closeEventPopup;
 window.createNewEvent = createNewEvent;
 
 // TODO (remusn@)
-function addEvent(event) {
+export default function addEventToLocalStorage(event) {
+    const eventManager = new EventManager();
+    eventManager.setup();
 
+    eventManager.addEvent(event);
+    console.log(eventManager.getEvents());
 }
