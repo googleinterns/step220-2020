@@ -32,8 +32,14 @@ function createNewEvent() {
         return;
     }
 
-    const event = new Event(title, location, startTime, endTime);
-    addEventToLocalStorage(JSON.parse(JSON.stringify(event)));
+    const event = {
+        "title": title,
+        "location": location,
+        "startTime": startTime,
+        "endTime": endTime
+    }
+
+    addEventToLocalStorage(event);
 }
 
 // Export functions to global object "window"
