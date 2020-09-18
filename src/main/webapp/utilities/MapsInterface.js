@@ -1,19 +1,17 @@
+import { API_KEY } from './CONSTANTS.js';
+
 // TODO(tzavidas): seperate the interface from the logic, by using an implementation for easier testing (like the bridge pattern)
-class MapInterface {
+export default class MapInterface {
     /**
      * @param element the DOM element the map to be rendered
      * @param centerCoordinates coordinates object that will be the center of the map
-     * @param {zoom: number, directionsService: type, directionsRenderer: type} options (optional) additional parameters that might be needed
+     * @param {zoom: number, directionsService: type} options (optional) additional parameters that might be needed
      * @param zoom (on options) initial zoom of the map
      * @param directionsService (on options) mock object for directionsService, can be used for testing
-     * @param directionsRenderer (on options) mock object for directionsRenderer, can be used for testing
      */
     constructor(element, centerCoordinates, options = {
         zoom: 8,
         directionsService: new google.maps.DirectionsService(),
-        directionsRenderer: new google.maps.DirectionsRenderer({
-            suppressMarkers: true, // do not display default markers of the route
-        }),
     }) {
         this.map = new google.maps.Map(element, {
             center: centerCoordinates,
@@ -23,11 +21,11 @@ class MapInterface {
         // Service that fetches the route (used on drawRoute)
         this.directionsService = options.directionsService;
 
-        // Service that draws a route on the map (used by drawRoute method)
-        this.directionsRenderer = options.directionsRenderer;
-        this.directionsRenderer.setMap(this.map);
-
+        // Stores all the markers on the map
         this.markers = [];
+
+        // Stores all the routes rendered on the map
+        this.directionRenderers = [];
     }
 
     /**
@@ -60,7 +58,7 @@ class MapInterface {
      * @param fetch (optional) the fetch object - can use a mock to test this function
      * @returns converts into and return the coordinates object, empty object if location not found
      */
-    async converToCoordinates(text, fetch = windows.fetch) {
+    async convertToCoordinates(text, fetch = window.fetch) {
         const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${API_KEY}&address=${text}`; // Maps JS API can also be used
         // you can add your API key at the CONSTANTS.js file
 
@@ -85,17 +83,25 @@ class MapInterface {
      * @param originCoordinates the coordinates of the origin of the route
      * @param destinationCoordinates the coordinates of the destination of the route
      * @param travelMode constant that indicates the mode of transportation
-     * @param options (optional) additional options that might be needed (like adding a starting or arrival time for the route)
+     * @param directionServiceOptions (optional) additional options for the directionsService
+     * @param directionsRendererObject mock object for the directions renderer, can be used for testing
      */
-    drawRoute(originCoordinates, destinationCoordinates, travelMode, options = {}) {
+    drawRoute(originCoordinates, destinationCoordinates, travelMode, directionServiceOptions = {},
+        directionsRendererObject =  new google.maps.DirectionsRenderer({
+            suppressMarkers: true, // do not display default markers of the route
+        })
+    ) {
         this.directionsService.route({
             origin: originCoordinates,
             destination: destinationCoordinates,
             travelMode,
-            ...options
+            ...directionServiceOptions
         }, (result, status) => {
             if(status == 'OK') {
-                this.directionsRenderer.setDirections(result);
+                directionsRendererObject.setMap(this.map);
+                directionsRendererObject.setDirections(result);
+
+                this.directionsRenderers.push(directionsRendererObject);
             } else {
                 alert('An error has occured while calculating a route');
                 // TODO(tzavidas): as soon as test it, replace this with an actual action (like reloading the page)

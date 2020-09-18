@@ -9,6 +9,13 @@ export default class Step3Renderer extends RendererInterface {
         return '#'; // TODO(tzavidas): create the actual link
     }
 
+    formatDate(date) {
+        const hours = date.getHours(),
+            minutes = date.getMinutes();
+
+        return `${hours % 12}:${minutes.toString(10).padStart(2, '0')} ${(date.getHours() < 12) ? 'AM' : 'PM'}`;
+    }
+
     render(events) {
         this.parentElement.innerHTML = '';
 
@@ -18,7 +25,7 @@ export default class Step3Renderer extends RendererInterface {
             this.parentElement.innerHTML += `
                 <div class="event-container">
                     <h3>${event.name}</h3>
-                    <p>${event.startingTime} - ${event.endingTime}</p>
+                    <p>${this.formatDate(event.startingTime)} - ${this.formatDate(event.endingTime)}</p>
                     <p>${event.location}</p>
                 </div>
             `;

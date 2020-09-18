@@ -1,36 +1,98 @@
 import Step3Renderer from './renderers/Step3Renderer.js';
+import MapsInterface from './utilities/MapsInterface.js';
 
 // TODO(tzavidas): replace this array with the event management class, as discussed with remusn
 const events = [{
         name: 'Breakfast',
         location: 'Zurich',
-        startingTime: '9:30',
-        endingTime: '10:30',
+        startingTime: new Date('2020-09-19T09:30:00'),
+        endingTime: new Date('2020-09-19T10:00:00'),
+        travelMode: 'DRIVING',
     }, {
         name: 'Lunch',
         location: 'Stuttgart',
-        startingTime: '13:30',
-        endingTime: '14:30',
+        startingTime: new Date('2020-09-19T13:30:00'),
+        endingTime: new Date('2020-09-19T14:30:00'),
+        travelMode: 'DRIVING',
     }, {
         name: 'Dinner',
         location: 'Bucharest',
-        startingTime: '19:30',
-        endingTime: '20:30',
+        startingTime: new Date('2020-09-19T19:30:00'),
+        endingTime: new Date('2020-09-19T20:30:00'),
     }
 ];
 
-/**
- * Empties the event list
- * Add the events from local storage
- */
-function startup() {
-    let container = document.getElementsByClassName('main-interface')[0];
-    const renderer = new Step3Renderer(container);
+// For each event, it gets the location, converts it into coordinates and adds it to the object
+async function getLocationsInCoordinates(eventsList, mapsInterface) {
+    const locationsConverted = [];
+    let hasErrors = false;
 
+    for(const event of eventsList) {
+        const { status: reqStatus, coordinates } = await mapsInterface.convertToCoordinates(event.location);
+
+        if(reqStatus === 'OK') {
+            event.coordinates = coordinates;
+        } else {
+            event.coordinates = null;
+
+            hasErrors = true;
+        }
+    }
+
+    if(hasErrors) {
+        alert('Warning: Some locations could not be converted to coordinates! Those will be ommitted!');
+    }
+}
+
+// Adds the pins on the map for each event
+function addMarkers(eventsList, mapsInterface) {
+    for(const { coordinates: currCoordinates } of eventsList) {
+        if(currCoordinates !== null) {
+            mapsInterface.addMarker(currCoordinates);
+        }
+    }
+}
+
+// Draws the routes between each adjacent event
+function drawRoutes(eventsList, mapsInterface) {
+    for(let i = 0; i < eventsList.length - 1; i++) { // ommitting the last entry
+        const currCoordinates = eventsList[i].coordinates,
+            nextCoordinates = eventsList[i + 1].coordinates;
+
+        if(currCoordinates !== null && nextCoordinates !== null && eventsList[i].location !== eventsList[i + 1].location) {
+            mapsInterface.drawRoute(currCoordinates, nextCoordinates, eventsList[i].travelMode, {
+                drivingOptions: {
+                    departureTime: eventsList[i].endingTime,
+                }
+            });
+        }
+    }
+}
+
+// Entry poing for the business logic for the MapView
+async function setupMap(eventsList, mapsInterface) {
+    await getLocationsInCoordinates(eventsList, mapsInterface);
+
+    addMarkers(eventsList, mapsInterface);
+    drawRoutes(eventsList, mapsInterface);
+}
+
+// Functions that gets called when the Maps API loads
+// It's the entry point of JavaScript and it generates the dynamic HTML code and sets up the MapView
+function startup() {
+    const container = document.getElementsByClassName('main-interface')[0];
+
+    const renderer = new Step3Renderer(container);
     renderer.render(events);
+
+    const mapView = document.getElementsByClassName('map-view')[0];
+    const mapsInterface = new MapsInterface(mapView, { lat: 0, lng: 0 });
+
+    setupMap(events, mapsInterface);
 }
 
 /**
  * Startup() function is used every time the window refreshes
  */
-window.onload = startup;
+// window.onload = startup;
+window.startup = startup;
