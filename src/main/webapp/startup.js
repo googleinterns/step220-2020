@@ -42,13 +42,6 @@ function importEvents() {
     eventRenderer.render(eventManager.getEvents());
 }
 
-// Create the object only once
-if (window.itnerary == null) {
-    window.itnerary = {};
-}
-
-window.itnerary.importEvents = importEvents;
-
 /**
  * Empties the event list
  */
@@ -56,6 +49,16 @@ function startup() {
     const eventManager = new EventManager();
     eventManager.deleteAllEvents();
 }
+
+/**
+ * Create the window.itnerary object only once
+ */
+if (window.itnerary == null) {
+    window.itnerary = {};
+}
+
+window.itnerary.importEvents = importEvents;
+
 
 /**
  * Startup() function is used every time the window refreshes
