@@ -69,7 +69,7 @@ function drawRoutes(eventsList, mapsInterface) {
     }
 }
 
-// Entry poing for the business logic for the MapView
+// Entry point for the business logic for the MapView
 async function setupMap(eventsList, mapsInterface) {
     await getLocationsInCoordinates(eventsList, mapsInterface);
 
