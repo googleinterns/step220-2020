@@ -4,21 +4,21 @@ import MapsInterface from './utilities/MapsInterface.js';
 // TODO(tzavidas): replace this array with the event management class, as discussed with remusn
 const events = [{
         name: 'Breakfast',
-        location: 'Zurich',
-        startingTime: new Date('2020-09-19T09:30:00'),
-        endingTime: new Date('2020-09-19T10:00:00'),
-        travelMode: 'DRIVING',
+        location: 'Google Zurich',
+        startingTime: new Date('2020-09-22T09:30:00'),
+        endingTime: new Date('2020-09-22T10:00:00'),
+        travelMode: 'TRANSIT',
     }, {
         name: 'Lunch',
-        location: 'Stuttgart',
-        startingTime: new Date('2020-09-19T13:30:00'),
-        endingTime: new Date('2020-09-19T14:30:00'),
-        travelMode: 'DRIVING',
+        location: 'Zurich Main Station',
+        startingTime: new Date('2020-09-22T13:30:00'),
+        endingTime: new Date('2020-09-22T14:30:00'),
+        travelMode: 'TRANSIT',
     }, {
         name: 'Dinner',
-        location: 'Bucharest',
-        startingTime: new Date('2020-09-19T19:30:00'),
-        endingTime: new Date('2020-09-19T20:30:00'),
+        location: 'Bar am Wasser',
+        startingTime: new Date('2020-09-22T19:30:00'),
+        endingTime: new Date('2020-09-22T20:30:00'),
     }
 ];
 
