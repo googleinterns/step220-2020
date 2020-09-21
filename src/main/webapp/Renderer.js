@@ -9,13 +9,12 @@ export default class Renderer {
     render(events) {
         this.eventList.innerHTML = "";
 
-        for (let index of events) {
+        for (let event of events) {
             this.eventList.innerHTML += `
-                <div class="event">
-                    <p>${index.title}</p>
-                    <p>${index.location}</p>
-                    <p>${index.startTime}</p>
-                    <p>${index.endTime}</p>
+                <div class="event-container">
+                    <h3>${event.title}</h3>
+                    <p>${event.startTime} - ${event.endTime}</p>
+                    <p>${event.location}</p>
                 </div>
             `
         }
