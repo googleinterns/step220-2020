@@ -18,7 +18,7 @@ function startup() {
  * Checks the value in all radio boxes and add data to LocalStorage
  * TODO (remusn@) Check if radio boxes are empty
  */
-function checkRadioBoxes() {
+function addTransportToLocalStorage() {
     const size = document.getElementsByClassName('info-pane').length;
     for (let index = 0; index < size; ++index)  {
         const checkbox = document.getElementsByClassName('info-pane')[index];
@@ -59,7 +59,7 @@ if (window.itnerary == null) {
 /**
  * Adds the methods of transportation to LocalStorage
  */
-window.itnerary.addTransportToLocalStorage = checkRadioBoxes;
+window.itnerary.addTransportToLocalStorage = addTransportToLocalStorage;
 
 /**
  * Startup() function is used every time the window refreshes
