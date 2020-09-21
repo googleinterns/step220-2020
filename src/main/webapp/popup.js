@@ -32,11 +32,17 @@ function createNewEvent() {
         return;
     }
 
+    // Clear the fields after submit
+    document.getElementById('title').value = "";
+    document.getElementById('location').value = "";
+    document.getElementById('start-time').value = "";
+    document.getElementById('end-time').value = "";
+
     const event = {
-        "title": title,
-        "location": location,
-        "startTime": startTime,
-        "endTime": endTime
+        'title': title,
+        'location': location,
+        'startTime': startTime,
+        'endTime': endTime
     }
 
     addEventToLocalStorage(event);
