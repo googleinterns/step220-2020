@@ -111,3 +111,10 @@
     text-align: center;
     margin-top: 20px;
 }
+
+.warning {
+    text-align: center;
+    color: red;
+    /* Show only in case of bad behavior */
+    display: none;
+}
