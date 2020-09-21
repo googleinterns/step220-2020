@@ -42,7 +42,7 @@ function importEvents() {
     eventRenderer.render(eventManager.getEvents());
 }
 
-window.import = importEvents;
+window.importEvents = importEvents;
 
 /**
  * Empties the event list
