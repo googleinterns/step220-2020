@@ -42,7 +42,12 @@ function importEvents() {
     eventRenderer.render(eventManager.getEvents());
 }
 
-window.importEvents = importEvents;
+// Create the object only once
+if (window.itnerary == null) {
+    window.itnerary = {};
+}
+
+window.itnerary.importEvents = importEvents;
 
 /**
  * Empties the event list
