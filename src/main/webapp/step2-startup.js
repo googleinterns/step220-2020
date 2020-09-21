@@ -1,23 +1,5 @@
 import Step2Renderer from './renderers/Step2Renderer.js';
-
-// TODO(tzavidas): replace this array with the event management class, as discussed with remusn
-const events = [{
-        name: 'Breakfast',
-        location: 'Zurich',
-        startingTime: '9:30',
-        endingTime: '10:30',
-    }, {
-        name: 'Lunch',
-        location: 'Stuttgart',
-        startingTime: '13:30',
-        endingTime: '14:30',
-    }, {
-        name: 'Dinner',
-        location: 'Bucharest',
-        startingTime: '19:30',
-        endingTime: '20:30',
-    }
-];
+import EventManager from './utilities/EventManager.js';
 
 /**
  * Empties the event list
@@ -27,7 +9,8 @@ function startup() {
     let container = document.getElementsByClassName('main-interface')[0];
     const renderer = new Step2Renderer(container);
 
-    renderer.render(events);
+    const eventManager = new EventManager();
+    renderer.render(eventManager.getEvents());
 }
 
 /**
