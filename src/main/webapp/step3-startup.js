@@ -40,7 +40,7 @@ async function getLocationsInCoordinates(eventsList, mapsInterface) {
     }
 
     if(hasErrors) {
-        alert('Warning: Some locations could not be converted to coordinates! Those will be ommitted!');
+        alert('Warning: Some locations could not be converted to coordinates! Those locations will be ommitted!');
     }
 }
 
@@ -77,7 +77,7 @@ async function setupMap(eventsList, mapsInterface) {
     drawRoutes(eventsList, mapsInterface);
 }
 
-// Functions that gets called when the Maps API loads
+// Function that gets called when the Maps API loads
 // It's the entry point of JavaScript and it generates the dynamic HTML code and sets up the MapView
 function startup() {
     const container = document.getElementsByClassName('main-interface')[0];
@@ -91,8 +91,5 @@ function startup() {
     setupMap(events, mapsInterface);
 }
 
-/**
- * Startup() function is used every time the window refreshes
- */
-// window.onload = startup;
+// Global reference to be called by the Maps JS API (when it loads)
 window.startup = startup;
