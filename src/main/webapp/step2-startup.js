@@ -32,22 +32,20 @@ function checkRadioBoxes() {
  * the information is added to the n-th event data
  */
 function addTransportationToEvent(checkbox, index) {
-    if (checkbox.getElementsByTagName('input')[0].checked) {
-        eventManager.updateEvent(index, 
-            { travelMode: "Walk" } 
-        ) 
-    } else if (checkbox.getElementsByTagName('input')[1].checked) {
-        eventManager.updateEvent(index, 
-            { travelMode: "Public Transport" } 
-        )
-    } else if (checkbox.getElementsByTagName('input')[2].checked) {
-        eventManager.updateEvent(index, 
-            { travelMode: "Car" } 
-        )
-    } else if (checkbox.getElementsByTagName('input')[3].checked) {
-        eventManager.updateEvent(index, 
-            { travelMode: "Bike" } 
-        )
+    const transportation = [ "Walk", "Public transportation", "Car", "Bike" ];
+    
+    // Two consecutive elements are in the same location
+    if (!checkbox.getElementsByTagName('input').length) {
+        return;
+    }
+
+    for (let step = 0; step < 4; ++step) {
+        if (checkbox.getElementsByTagName('input')[step].checked) {
+            eventManager.updateEvent(index, 
+                { travelMode: transportation[step] } 
+            )
+            break; 
+        }
     }
 }
 
