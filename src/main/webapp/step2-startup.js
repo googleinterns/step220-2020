@@ -32,7 +32,7 @@ function addTransportToLocalStorage() {
  * the information is added to the n-th event data
  */
 function addTransportationToEvent(checkbox, index) {
-    const transportation = [ "Walk", "Public transportation", "Car", "Bike" ];
+    const transportation = [ "WALKING", "TRANSIT", "DRIVING", "BICYCLING" ];
     
     // Two consecutive elements are in the same location
     if (!checkbox.getElementsByTagName('input').length) {
