@@ -50,9 +50,16 @@ function addTransportationToEvent(checkbox, index) {
 }
 
 /**
+ * Create the window.itnerary object only once
+ */
+if (window.itnerary == null) {
+    window.itnerary = {};
+}
+
+/**
  * Adds the methods of transportation to LocalStorage
  */
-window.getTransportMethods = checkRadioBoxes;
+window.itnerary.addTransportToLocalStorage = checkRadioBoxes;
 
 /**
  * Startup() function is used every time the window refreshes
