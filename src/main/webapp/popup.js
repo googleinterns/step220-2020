@@ -29,6 +29,8 @@ function createNewEvent() {
 
     // Proceed only if all the fields are completed
     if (!title || !location || !startTime || !endTime) {
+        // Show warning message to user
+        document.getElementById('check-addevent').style.display = 'block';
         return;
     }
 
@@ -37,6 +39,9 @@ function createNewEvent() {
     document.getElementById('location').value = "";
     document.getElementById('start-time').value = "";
     document.getElementById('end-time').value = "";
+
+    // Remove warning message
+    document.getElementById('check-addevent').style.display = 'none';
 
     const event = {
         'title': title,
