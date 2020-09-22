@@ -24,7 +24,7 @@ export default class DateManager extends SessionManager {
      * Sets the date on the LocalStorage
      */
     setDate(year, month, date) {
-        super.setValueInLocalStorage({
+        super.writeValueToLocalStorage({
             year,
             month,
             date

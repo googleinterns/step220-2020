@@ -6,7 +6,7 @@ export default class SessionManager {
     }
 
     /**
-     * Gets JSON-parsed value from LocalStorage
+     * Gets the JSON-parsed value from LocalStorage
      * @returns {Any} the value on that field
      */
     getValueInLocalStorageParsed() {
@@ -14,11 +14,11 @@ export default class SessionManager {
     }
 
     /**
-     * Sets value to LocalStorage
+     * Sets the given value to the LocalStorage (if already existing, it overwrites it)
      * @param {Any} value the value to be set (if not string -> convert to one using JSON)
      * @returns {void}
      */
-    setValueInLocalStorage(value) {
+    writeValueToLocalStorage(value) {
         if(typeof value === 'string') {
             this.localStorage.setItem(this.localStorageKey, value);
         } else {
