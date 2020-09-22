@@ -46,6 +46,9 @@ function createNewEvent() {
     }
 
     addEventToLocalStorage(event);
+
+    // close popup window after submited
+    document.getElementById('add-event').style.display = 'none';
 }
 
 // Export functions to global object "window"
