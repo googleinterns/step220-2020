@@ -34,6 +34,7 @@ async function getLocationsInCoordinates(eventsList, mapsInterface) {
         if(reqStatus === 'OK') {
             event.coordinates = coordinates;
         } else {
+            // TODO(tzavidas, semenovm): find a better way to handle this case (ommiting events might not be a good idea)
             event.coordinates = null;
 
             hasErrors = true;
