@@ -10,8 +10,6 @@ export default class DateManager extends SessionManager {
     constructor(localStorageObject = window.localStorage) {
         const localStorageKey = 'date';
         super(localStorageObject, localStorageKey);
-
-        this.setup();
     }
 
     /**
