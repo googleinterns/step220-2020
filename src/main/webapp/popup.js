@@ -75,6 +75,9 @@ export default function addEventToLocalStorage(event) {
     eventRenderer.render(eventManager.getEvents());
 }
 
+/**
+ * Reads the date selected by the user and add it to LocalStorage
+ */ 
 function selectDate() {
     const date = document.getElementById('calendar-date').value;
     const year = date.substring(0,4);
