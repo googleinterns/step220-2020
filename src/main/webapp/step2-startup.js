@@ -16,27 +16,42 @@ function startup() {
 
 /**
  * Checks the value in all radio boxes and add data to LocalStorage
- * TODO (remusn@) Check if radio boxes are empty
  */
 function addTransportToLocalStorage() {
     const size = document.getElementsByClassName('info-pane').length;
     for (let index = 0; index < size; ++index)  {
         const checkbox = document.getElementsByClassName('info-pane')[index];
-        addTransportationToEvent(checkbox, index)
+        
+        if(!addTransportationToEvent(checkbox, index)) {
+            /**
+            * No field was selected
+            * Show warning message to user
+            */
+            document.getElementById('check-transport').style.display = 'block';
+            return;
+        }
     }
+
+    /**
+    * All boxes are checked
+    * Remove warning message and show next button
+    */ 
+    document.getElementById('check-transport').style.display = 'none';    
+    document.getElementById('to-step3').style.display = 'block';    
 }
 
 /**
  * Update events from LocalStorage
  * For a transportation mode with index n (from event n to event n+1)
  * the information is added to the n-th event data
+ * Returns 0 if there is no field selected, 1 otherwise
  */
 function addTransportationToEvent(checkbox, index) {
     const transportation = [ "WALKING", "TRANSIT", "DRIVING", "BICYCLING" ];
     
     // Two consecutive elements are in the same location
     if (!checkbox.getElementsByTagName('input').length) {
-        return;
+        return 1;
     }
 
     for (let step = 0; step < 4; ++step) {
@@ -44,9 +59,12 @@ function addTransportationToEvent(checkbox, index) {
             eventManager.updateEvent(index, 
                 { travelMode: transportation[step] } 
             )
-            break; 
+            return 1; 
         }
     }
+
+    // There is no field selected
+    return 0;
 }
 
 /**
