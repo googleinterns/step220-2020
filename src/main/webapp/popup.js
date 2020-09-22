@@ -1,6 +1,7 @@
 import Event from './Event.js';
 import EventManager from './utilities/EventManager.js';
 import Renderer from './Renderer.js';
+import DateManager from './utilities/DateManager.js';
 
 // TODO(remusn@) Create a class that can manage multiple popup objects
 
@@ -73,3 +74,15 @@ export default function addEventToLocalStorage(event) {
     const eventRenderer = new Renderer(container);
     eventRenderer.render(eventManager.getEvents());
 }
+
+function selectDate() {
+    const date = document.getElementById('calendar-date').value;
+    const year = date.substring(0,4);
+    const month = date.substring(5,7);
+    const day = date.substring(8,10);
+
+    const dateManager = new DateManager();
+    dateManager.setDate(year, month, day);
+}
+
+window.selectDate = selectDate;
