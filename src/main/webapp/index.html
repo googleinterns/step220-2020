@@ -9,6 +9,12 @@
   <body>
     <h1 class="name">Events</h1> 
 
+    <div class="select-date">
+        <label>Select date:</label>
+        <input type="date" id="calendar-date" required pattern="\d{4}-\d{2}-\d{2}">
+        <button class="action" onclick="window.selectDate()">Submit</button>
+    </div>
+
     <!-- Link import button to Calendar logic -->
     <button class="action" onclick="window.itnerary.importEvents()">Import events</button>
 
