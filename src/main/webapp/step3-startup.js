@@ -60,6 +60,7 @@ function addMarkers(eventsList, mapsInterface) {
  * @return {Date} template Date object with only the date set
  */
 function prepareDateObjectForAPI() {
+    // TODO(tzavidas): allow reference dates that are over 1 week on the past (by moving forward dateObj as many weeks to the future as needed)
     const dateManager = new DateManager();
 
     const { year, month, date } = dateManager.getDate();
