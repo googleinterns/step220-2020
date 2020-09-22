@@ -13,10 +13,17 @@
         <div class="content">
             <h2 class="title">Choose mode of transportation</h2>
             <div class="main-interface"></div>
-            <div class="next-page">
+            
+            <div class="warning" id="check-transport"> 
+                <p>Please check all of the boxes before submiting.<p>
+            </div>
+
+            <div class="next-page" id='to-step3'>
                 <!-- TODO(tzavidas): replace it with buttons like on the mock -->
-                <a class="next-button" href="step2.html"><b>Next</b></a>
+                <a class="next-button" href="step3.html"><b>Next</b></a>
             </div>
         </div>
+
+        <button class="action" onclick="window.itnerary.addTransportToLocalStorage()">Submit</button>
     </body>
 </html>

@@ -34,8 +34,8 @@ export default class Step2Renderer extends RendererInterface {
 
             this.parentElement.innerHTML += `
                 <div class="event-container">
-                    <h3>${event.name}</h3>
-                    <p>${event.startingTime} - ${event.endingTime}</p>
+                    <h3>${event.title}</h3>
+                    <p>${event.startTime} - ${event.endTime}</p>
                     <p>${event.location}</p>
                 </div>
             `;
