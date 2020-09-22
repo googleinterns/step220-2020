@@ -1,24 +1,25 @@
 import Step3Renderer from './renderers/Step3Renderer.js';
 import MapsInterface from './utilities/MapsInterface.js';
+import DateManager from './utilities/DateManager.js';
 
 // TODO(tzavidas): replace this array with the event management class, as discussed with remusn
 const events = [{
         name: 'Breakfast',
         location: 'Google Zurich',
-        startingTime: new Date('2020-09-22T09:30:00'),
-        endingTime: new Date('2020-09-22T10:00:00'),
+        startingTime: '09:30',
+        endingTime: '10:00',
         travelMode: 'TRANSIT',
     }, {
         name: 'Lunch',
         location: 'Zurich Main Station',
-        startingTime: new Date('2020-09-22T13:30:00'),
-        endingTime: new Date('2020-09-22T14:30:00'),
+        startingTime: '13:30',
+        endingTime: '14:30',
         travelMode: 'TRANSIT',
     }, {
         name: 'Dinner',
         location: 'Bar am Wasser',
-        startingTime: new Date('2020-09-22T19:30:00'),
-        endingTime: new Date('2020-09-22T20:30:00'),
+        startingTime: '19:30',
+        endingTime: '20:30',
     }
 ];
 
@@ -53,6 +54,37 @@ function addMarkers(eventsList, mapsInterface) {
     }
 }
 
+/**
+ * Creates the template Date object (without the time), by extracting the reference date from the LocalStorage
+ * @return {Date} template Date object with only the date set
+ */
+function prepareDateObjectForAPI() {
+    const dateManager = new DateManager();
+
+    const { year, month, date } = dateManager.getDate();
+
+    const dateObj = new Date(year, month, date);
+    dateObj.setDate(dateObj.getDate() + 7); // set the day 7 days to the future (needed by the API)
+
+    return dateObj;
+}
+
+/**
+ * Gets the date object from prepareDateObjectForAPI() and updates it with the given time string
+ * @param time string on the form HH:MM
+ * @return {Date} the finalized Date object that can be used on the API
+ */
+function getDateForAPI(time) {
+    const dateObj = prepareDateObjectForAPI();
+
+    const [ hour, minute ] = time.split(':');
+
+    dateObj.setHours(hour);
+    dateObj.setMinutes(minute);
+
+    return dateObj;
+}
+
 // Draws the routes between each adjacent event
 function drawRoutes(eventsList, mapsInterface) {
     for(let i = 0; i < eventsList.length - 1; i++) { // ommitting the last entry
@@ -62,7 +94,7 @@ function drawRoutes(eventsList, mapsInterface) {
         if(currCoordinates !== null && nextCoordinates !== null && eventsList[i].location !== eventsList[i + 1].location) {
             mapsInterface.drawRoute(currCoordinates, nextCoordinates, eventsList[i].travelMode, {
                 drivingOptions: {
-                    departureTime: eventsList[i].endingTime,
+                    departureTime: getDateForAPI(eventsList[i].endingTime),
                 }
             });
         }
