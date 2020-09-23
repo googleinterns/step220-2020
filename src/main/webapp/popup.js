@@ -9,14 +9,18 @@ import DateManager from './utilities/DateManager.js';
  * Opens a popup window for adding an event when the add-button is pressed
  */
 function openEventPopup() {
-    document.getElementById('add-event').style.display = 'block';
+    document.getElementById('add-event-modal').style.display = 'block';
+    document.getElementsByClassName('modal-overlay')[0].style.display = 'block';
 }
 
 /**
  * Closes the popup window by pressing the "Cancel" button inside that popup
  */
 function closeEventPopup() {
-    document.getElementById('add-event').style.display = 'none';
+    document.getElementById('add-event-modal').style.display = 'none';
+    document.getElementsByClassName('modal-overlay')[0].style.display = 'none';
+
+    document.getElementById('check-addevent').style.display = 'none'; // remove warning message
 }
 
 /**
@@ -54,7 +58,7 @@ function createNewEvent() {
     addEventToLocalStorage(event);
 
     // close popup window after submited
-    document.getElementById('add-event').style.display = 'none';
+    closeEventPopup();
 }
 
 // Export functions to global object "window"

@@ -25,30 +25,40 @@
         <button class="create-event" onclick="window.openEventPopup()">+</button>
     </div>
 
-    <div class="popup-window" id="add-event">  
-        <p>Add Event</p>
-
-        <label>Title:</label>
-        <input type="text" id="title" placeholder="Enter event title" required>
-
-        <label>Location:</label>
-        <input type="text" id="location" placeholder="Enter event location" required>
-
-        <label>Start Time:</label>
-        <input type="time" id="start-time" required>
-        <label>End Time:</label>
-        <input type="time" id="end-time" required>
-
-        <button class="action" onclick="window.createNewEvent()">Submit</button>
-        <button class="action" onclick="window.closeEventPopup()">Cancel</button>
-    </div>
-
-    <div class="warning" id="check-addevent"> 
-        <p>Please complete all the fields before submiting.<p>
+    <div class="modal-overlay" style="display: none" onclick="window.closeEventPopup()"></div>
+    <div class="modal" id="add-event-modal" style="display: none">
+        <div class="close-modal-container">
+            <button class="action" onclick="window.closeEventPopup()">+</button>
+        </div>
+        <h2>Add Event</h3>
+        <form>
+            <div class="main-form">
+                <div class="form-row">
+                    <label>Title:</label>
+                    <input type="text" id="title" placeholder="Enter event title" required>
+                </div>
+                <div class="form-row">
+                    <label>Location:</label>
+                    <input type="text" id="location" placeholder="Enter event location" required>
+                </div>
+                <div class="form-row">
+                    <label>Start Time:</label>
+                    <input type="time" id="start-time" required>
+                </div>
+                <div class="form-row">
+                    <label>End Time:</label>
+                    <input type="time" id="end-time" required>
+                </div>
+            </div>
+            <div class="warning" id="check-addevent"> 
+                <p>Please complete all the fields before submiting.<p>
+            </div>
+            <button class="action-add-event large-button" onclick="window.createNewEvent(); return false">Add Event</button>
+        </form>
     </div>
 
     <div class="next-page">
-        <a class="next-button" href="step2.html"><b>Next</b></a>
+        <a class="next-button large-button" href="step2.html"><b>Next</b></a>
     </div>
   </body>
 </html>
