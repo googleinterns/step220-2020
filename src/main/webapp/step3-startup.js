@@ -1,27 +1,7 @@
 import Step3Renderer from './renderers/Step3Renderer.js';
 import MapsInterface from './utilities/MapsInterface.js';
+import EventManager from './utilities/EventManager.js';
 import DateManager from './utilities/DateManager.js';
-
-// TODO(tzavidas): replace this array with the event management class, as discussed with remusn
-const events = [{
-        name: 'Breakfast',
-        location: 'Google Zurich',
-        startingTime: '09:30',
-        endingTime: '10:00',
-        travelMode: 'TRANSIT',
-    }, {
-        name: 'Lunch',
-        location: 'Zurich Main Station',
-        startingTime: '13:30',
-        endingTime: '14:30',
-        travelMode: 'TRANSIT',
-    }, {
-        name: 'Dinner',
-        location: 'Bar am Wasser',
-        startingTime: '19:30',
-        endingTime: '20:30',
-    }
-];
 
 // For each event, it gets the location, converts it into coordinates and adds it to the object
 async function getLocationsInCoordinates(eventsList, mapsInterface) {
@@ -96,7 +76,7 @@ function drawRoutes(eventsList, mapsInterface) {
         if(currCoordinates !== null && nextCoordinates !== null && eventsList[i].location !== eventsList[i + 1].location) {
             mapsInterface.drawRoute(currCoordinates, nextCoordinates, eventsList[i].travelMode, {
                 drivingOptions: {
-                    departureTime: getDateForAPI(eventsList[i].endingTime),
+                    departureTime: getDateForAPI(eventsList[i].endTime),
                 }
             });
         }
@@ -117,6 +97,10 @@ function startup() {
     const container = document.getElementsByClassName('main-interface')[0];
 
     const renderer = new Step3Renderer(container);
+    const eventManager = new EventManager();
+
+    const events = eventManager.getEvents()
+
     renderer.render(events);
 
     const mapView = document.getElementsByClassName('map-view')[0];
