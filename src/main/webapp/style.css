@@ -143,7 +143,7 @@
     margin-top: 0;
 }
 
-#add-event-modal > form {
+#add-event-modal .main-form {
     display: flex;
     flex-direction: column;
 }
@@ -173,6 +173,23 @@
 #add-event-modal .form-row > input:focus {
     border-bottom-color: #1A73e8;
     transition: 0.2s;
+}
+
+.large-button {
+    color: white;
+    background-color: #1A73e8;
+    font: 23px arial, sans-serif;
+    font-weight: bold;
+    padding: 15px 55px;
+    border: 1px solid black;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.action-add-event {
+    display: block;
+    margin: 15px auto 0;
 }
 
 /* STEP 2/3 */
