@@ -86,6 +86,8 @@
     cursor: pointer;
     color: white;
     background-color: #1A73e8;
+    padding-left: 7px;
+    padding-bottom: 2px;
     border: none;
     outline: none;
     border-radius: 100%;
@@ -121,12 +123,14 @@
 
 #add-event-modal .close-modal-container {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    top: -10px;
+    right: 0px;
 }
 
 .close-modal-container button {
-    font-size: 40px;
+    font-size: 55px;
+    font-weight: bold;
+    transform: rotate(45deg);
     color: #1A73e8;
     background-color: transparent;
     cursor: pointer;
