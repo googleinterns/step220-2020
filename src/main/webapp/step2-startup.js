@@ -34,10 +34,12 @@ function addTransportToLocalStorage() {
 
     /**
     * All boxes are checked
-    * Remove warning message and show next button
+    * Remove warning message
     */ 
-    document.getElementById('check-transport').style.display = 'none';    
-    document.getElementById('to-step3').style.display = 'block';    
+    document.getElementById('check-transport').style.display = 'none';       
+
+    // Redirect to step 3
+    window.location.href = "step3.html";
 }
 
 /**
