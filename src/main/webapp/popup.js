@@ -90,6 +90,9 @@ function selectDate() {
 
     const dateManager = new DateManager();
     dateManager.setDate(year, month, day);
+
+    // Once the date is selected, display to the user the addevent interface
+    document.getElementById('step1-content').style.display = 'block';
 }
 
 window.selectDate = selectDate;
