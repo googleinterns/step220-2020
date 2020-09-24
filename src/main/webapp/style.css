@@ -277,6 +277,10 @@
     display: none;
 }
 
+#to-step2 {
+    display: none;
+}
+
 #to-step3 {
     /* Show only when all of the conditions from step 2 are accomplished */
     display: none;

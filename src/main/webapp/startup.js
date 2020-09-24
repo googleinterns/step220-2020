@@ -26,8 +26,6 @@ const events = [
     }
 ]
 
-// TODO (remusn@) Link Google Calendar with the function
-
 /**
  * Imports events from Google Calendar
  */
@@ -40,6 +38,11 @@ function importEvents() {
     let container = document.getElementsByClassName('list')[0];
     const eventRenderer = new Renderer(container);
     eventRenderer.render(eventManager.getEvents());
+
+    // Show NEXT button only if there are at least 2 events
+    if (eventManager.getEvents().length > 1) {
+        document.getElementById('to-step2').style.display = 'block';
+    }
 }
 
 /**
