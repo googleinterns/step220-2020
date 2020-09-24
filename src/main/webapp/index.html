@@ -11,54 +11,54 @@
 
     <div class="select-date">
         <label>Select date:</label>
-        <input type="date" id="calendar-date" required pattern="\d{4}-\d{2}-\d{2}">
-        <button class="action" onclick="window.selectDate()">Submit</button>
+        <input type="date" id="calendar-date" required pattern="\d{4}-\d{2}-\d{2}" onchange="window.selectDate()">
     </div>
 
-    <!-- Link import button to Calendar logic -->
-    <button class="action" onclick="window.itnerary.importEvents()">Import events</button>
+    <div id="step1-content">
+        <button class="action" onclick="window.itnerary.importEvents()">Import events</button>
 
-    <div class="list">
-    </div>
-
-    <div id="add-button">
-        <button class="create-event" onclick="window.openEventPopup()">+</button>
-    </div>
-
-    <div class="modal-overlay" style="display: none" onclick="window.closeEventPopup()"></div>
-    <div class="modal" id="add-event-modal" style="display: none">
-        <div class="close-modal-container">
-            <button class="action" onclick="window.closeEventPopup()">+</button>
+        <div class="list">
         </div>
-        <h2>Add Event</h3>
-        <form>
-            <div class="main-form">
-                <div class="form-row">
-                    <label>Title:</label>
-                    <input type="text" id="title" placeholder="Enter event title" required>
-                </div>
-                <div class="form-row">
-                    <label>Location:</label>
-                    <input type="text" id="location" placeholder="Enter event location" required>
-                </div>
-                <div class="form-row">
-                    <label>Start Time:</label>
-                    <input type="time" id="start-time" required>
-                </div>
-                <div class="form-row">
-                    <label>End Time:</label>
-                    <input type="time" id="end-time" required>
-                </div>
-            </div>
-            <div class="warning" id="check-addevent"> 
-                <p>Please complete all the fields before submiting.<p>
-            </div>
-            <button class="action-add-event large-button" onclick="window.createNewEvent(); return false">Add Event</button>
-        </form>
-    </div>
 
-    <div class="next-page">
-        <a class="next-button large-button" href="step2.html"><b>Next</b></a>
+        <div id="add-button">
+            <button class="create-event" onclick="window.openEventPopup()">+</button>
+        </div>
+
+        <div class="modal-overlay" style="display: none" onclick="window.closeEventPopup()"></div>
+        <div class="modal" id="add-event-modal" style="display: none">
+            <div class="close-modal-container">
+                <button class="action" onclick="window.closeEventPopup()">+</button>
+            </div>
+            <h2>Add Event</h3>
+            <form>
+                <div class="main-form">
+                    <div class="form-row">
+                        <label>Title:</label>
+                        <input type="text" id="title" placeholder="Enter event title" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Location:</label>
+                        <input type="text" id="location" placeholder="Enter event location" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Start Time:</label>
+                        <input type="time" id="start-time" required>
+                    </div>
+                    <div class="form-row">
+                        <label>End Time:</label>
+                        <input type="time" id="end-time" required>
+                    </div>
+                </div>
+                <div class="warning" id="check-addevent"> 
+                    <p>Please complete all the fields before submiting.<p>
+                </div>
+                <button class="action-add-event large-button" onclick="window.createNewEvent(); return false">Add Event</button>
+            </form>
+        </div>
+
+        <div class="next-page">
+            <a class="next-button large-button" href="step2.html"><b>Next</b></a>
+        </div>
     </div>
   </body>
 </html>
