@@ -1,6 +1,5 @@
 import { API_KEY } from './CONSTANTS.js';
 
-// TODO(tzavidas): seperate the interface from the logic, by using an implementation for easier testing (like the bridge pattern)
 export default class MapInterface {
     /**
      * @param element the DOM element the map to be rendered
@@ -102,9 +101,6 @@ export default class MapInterface {
                 directionsRendererObject.setDirections(result);
 
                 this.directionsRenderers.push(directionsRendererObject);
-            } else {
-                // alert('An error has occured while calculating a route');
-                // TODO(tzavidas): as soon as test it, replace this with an actual action (like reloading the page)
             }
         })
     }

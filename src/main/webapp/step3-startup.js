@@ -14,7 +14,6 @@ async function getLocationsInCoordinates(eventsList, mapsInterface) {
         if(reqStatus === 'OK') {
             event.coordinates = coordinates;
         } else {
-            // TODO(tzavidas, semenovm): find a better way to handle this case (ommiting events might not be a good idea)
             event.coordinates = null;
 
             hasErrors = true;
@@ -40,7 +39,6 @@ function addMarkers(eventsList, mapsInterface) {
  * @return {Date} template Date object with only the date set
  */
 function prepareDateObjectForAPI() {
-    // TODO(tzavidas): allow reference dates that are over 1 week on the past (by moving forward dateObj as many weeks to the future as needed)
     const dateManager = new DateManager();
 
     const { year, month, date } = dateManager.getDate();

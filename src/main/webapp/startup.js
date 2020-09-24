@@ -2,8 +2,6 @@ import Renderer from './Renderer.js';
 import addEventToLocalStorage from './popup.js';
 import EventManager from './utilities/EventManager.js';
 
-// TODO (remusn@) change time format so that it matches Google Maps time format
-
 // Events array for testing
 const events = [
     {
@@ -27,7 +25,7 @@ const events = [
 ]
 
 /**
- * Imports events from Google Calendar
+ * Imports events
  */
 function importEvents() {
     const eventManager = new EventManager();

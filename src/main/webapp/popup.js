@@ -3,8 +3,6 @@ import EventManager from './utilities/EventManager.js';
 import Renderer from './Renderer.js';
 import DateManager from './utilities/DateManager.js';
 
-// TODO(remusn@) Create a class that can manage multiple popup objects
-
 /**
  * Opens a popup window for adding an event when the add-button is pressed
  */

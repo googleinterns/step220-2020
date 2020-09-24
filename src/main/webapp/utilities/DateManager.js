@@ -11,12 +11,10 @@ export default class DateManager extends SessionManager {
         const localStorageKey = 'date';
         super(localStorageObject, localStorageKey);
 
-        // Used to demonstrate the 3rd step map functionality
-        // TODO(tzavidas): as soon as getDate() is called on step1, remove this function
+        // Used to demonstrate the 3rd step map functionalit
         this.setup();
     }
 
-    // TODO(tzavidas): as soon as getDate() is called on step1, remove this function
     setup() {
         const date = this.getDate();
 
