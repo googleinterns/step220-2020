@@ -14,13 +14,13 @@ export default class Step2Renderer extends RendererInterface {
 
         return (prevEvent.location == nextEvent.location ? sameLocationHtml : `
             <div class="info-pane">
-                <input type="radio" name="options-${index}" id="walk-option" value="car" />
+                <input type="radio" name="options-${index}"/>
                 <label for="walk-option">Walk</label>
-                <input type="radio" name="options-${index}" id="public-transportation-option" value="public-transportation" />
+                <input type="radio" name="options-${index}"/>
                 <label for="public-transportation-option">Public Transportation</label>
-                <input type="radio" name="options-${index}" id="car-option" value="car" />
+                <input type="radio" name="options-${index}"/>
                 <label for="car-option">Car</label>
-                <input type="radio" name="options-${index}" id="bike-option" value="car" />
+                <input type="radio" name="options-${index}"/>
                 <label for="bike-option">Bike</label>
             </div>
         `);
