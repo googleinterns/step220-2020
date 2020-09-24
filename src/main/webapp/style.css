@@ -277,6 +277,21 @@
     display: none;
 }
 
+#to-step2 {
+    display: none;
+}
+
+#to-step3 {
+    /* Show only when all of the conditions from step 2 are accomplished */
+    display: none;
+}
+
 .select-date {
     text-align: center;
+}
+
+#step1-content {
+    text-align: center;
+    /* Show only when the date was selected */
+    display: none;
 }
