@@ -277,11 +277,6 @@
     display: none;
 }
 
-#to-step3 {
-    /* Show only when all of the conditions from step 2 are accomplished */
-    display: none;
-}
-
 .select-date {
     text-align: center;
 }
