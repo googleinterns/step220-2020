@@ -101,3 +101,17 @@ function selectDate() {
 }
 
 window.selectDate = selectDate;
+
+window.deleteEvent = function(index) {
+    const eventManager = new EventManager();
+    eventManager.deleteEvent(index);
+
+    const container = document.getElementsByClassName('list')[0];
+    const eventRenderer = new Renderer(container);
+    eventRenderer.render(eventManager.getEvents());
+
+    // Show NEXT button only if there are at least 2 events
+    if (eventManager.getEvents().length < 2) {
+        document.getElementById('to-step2').style.display = 'none';
+    }
+}

@@ -1,5 +1,5 @@
 .name {
-    color: blue;
+    color: #1A73e8;
     font-size: 50px;
     font-weight: bold;
     text-align: center;
@@ -289,4 +289,9 @@
     text-align: center;
     /* Show only when the date was selected */
     display: none;
+}
+
+#import-button {
+    margin: 15px 0;
+    padding: 8px 22px;
 }

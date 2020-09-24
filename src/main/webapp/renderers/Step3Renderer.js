@@ -6,7 +6,7 @@ export default class Step3Renderer extends RendererInterface {
     }
 
     generateLink(from, to) {
-        return '#'; // TODO(tzavidas): create the actual link
+        return `https://www.google.com/maps/dir/${from}/${to}`;
     }
 
     render(events) {

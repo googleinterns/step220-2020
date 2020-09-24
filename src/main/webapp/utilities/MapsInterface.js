@@ -103,7 +103,7 @@ export default class MapInterface {
 
                 this.directionsRenderers.push(directionsRendererObject);
             } else {
-                alert('An error has occured while calculating a route');
+                // alert('An error has occured while calculating a route');
                 // TODO(tzavidas): as soon as test it, replace this with an actual action (like reloading the page)
             }
         })
